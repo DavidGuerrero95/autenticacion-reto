@@ -41,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				.peek(authority -> log.info("Role: " + authority.getAuthority())).collect(Collectors.toList());
 
 
-		log.info("Usuario autenticado: " + username);
+		log.info("Usuario autenticado: " + usuario.getUsername()+ " contraseña: "+usuario.getPassword()+ " enabled: "+usuario.getEnabled());
 		return new User(usuario.getUsername(), usuario.getPassword(), usuario.getEnabled(), true, true, true,
 				authorities);
 
