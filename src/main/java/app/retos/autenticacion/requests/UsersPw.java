@@ -27,6 +27,7 @@ public class UsersPw {
 	@Size(max = 20)
 	@Indexed(unique = true)
 	private String username;
+
 	@Indexed(unique = true)
 	@JsonIgnore
 	private String userId;
