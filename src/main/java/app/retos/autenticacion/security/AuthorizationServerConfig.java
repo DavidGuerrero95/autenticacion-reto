@@ -1,10 +1,7 @@
 package app.retos.autenticacion.security;
 
 
-import java.util.Base64;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,19 +16,13 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Base64;
+
 @RefreshScope
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Value("${jwt.authorizedGrantTypes:password,authorization_code,refresh_token}")
-    private String[] authorizedGrantTypes;
-
-    @Value("${jwt.accessTokenValidititySeconds:3600}") // 12 hours
-    private int accessTokenValiditySeconds;
-
-    @Value("${jwt.refreshTokenValiditySeconds:3600}") // 30 days
-    private int refreshTokenValiditySeconds;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -47,9 +38,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     @PostMapping("/login/autorizacion/token")
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory().withClient("appcity").secret(passwordEncoder.encode("udea")).scopes("read", "write")
-                .authorizedGrantTypes("password", "refresh_token").accessTokenValiditySeconds(3600)
-                .refreshTokenValiditySeconds(3600);
+        clients.inMemory().withClient("flutter-reto").secret(passwordEncoder.encode("udea")).scopes("read", "write")
+                .authorizedGrantTypes("password", "refresh_token");
     }
 
     @Override
