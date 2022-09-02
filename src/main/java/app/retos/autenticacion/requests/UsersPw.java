@@ -3,6 +3,7 @@ package app.retos.autenticacion.requests;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -22,9 +23,12 @@ public class UsersPw {
 	@JsonIgnore
 	private String id;
 
-	@NotBlank(message = "UserId No puede ser null")
+	@NotNull(message = "Username no puede ser nulo")
 	@Size(max = 20)
 	@Indexed(unique = true)
+	private String username;
+	@Indexed(unique = true)
+	@JsonIgnore
 	private String userId;
 
 	@NotBlank(message = "Password no puede ser nulo")
