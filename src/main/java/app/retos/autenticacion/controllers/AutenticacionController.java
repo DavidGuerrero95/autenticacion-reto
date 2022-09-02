@@ -18,6 +18,7 @@ public class AutenticacionController {
 
     @CircuitBreaker(name = "usuarios", fallbackMethod = "iniciarSesionAlternativo")
     public UsersPw obtenerUsuario(String username) {
+        log.info("Conexion con usuarios: "+username);
         return uClient.autenticacion(username);
     }
 
