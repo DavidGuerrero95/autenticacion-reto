@@ -23,15 +23,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-	@Value("${jwt.authorizedGrantTypes:password,authorization_code,refresh_token}")
-	private String[] authorizedGrantTypes;
-
-	@Value("${jwt.accessTokenValidititySeconds:3600}") // 12 hours
-	private int accessTokenValiditySeconds;
-
-	@Value("${jwt.refreshTokenValiditySeconds:3600}") // 30 days
-	private int refreshTokenValiditySeconds;
-
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
