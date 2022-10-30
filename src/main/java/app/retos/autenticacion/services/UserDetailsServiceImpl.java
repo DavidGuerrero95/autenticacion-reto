@@ -43,7 +43,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 
 		log.info("Usuario autenticado: " + username);
-		return new User(usuario.getUsername(), usuario.getPassword(), usuario.getEnabled(), true, true, true,
+		return new User(username, usuario.getPassword(), usuario.getEnabled(), true, true, true,
 				authorities);
 
 	}

@@ -24,14 +24,15 @@ public class UsersPw {
 	@JsonIgnore
 	private String id;
 
-	@NotNull(message = "Username cannot be null")
+	@NotNull(message = "Username no puede ser nulo")
 	@Size(max = 20)
 	@Indexed(unique = true)
-	private String username;
+	@JsonIgnore
+	private String userId;
 
-	@NotNull(message = "Password cannot be null")
-	@Size(min = 6, max = 20, message = "About Me must be between 6 and 20 characters")
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@NotBlank(message = "Password no puede ser nulo")
+	@Pattern(regexp = "[^ ]*+", message = "Caracter: ' ' (Espacio en blanco) invalido")
+	@Size(min = 6, max = 20, message = "La contraseña debe tener entre 6 y 20 caracteres")
 	private String password;
 
 	private Boolean enabled;
