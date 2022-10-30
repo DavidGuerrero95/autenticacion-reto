@@ -8,10 +8,10 @@ import app.retos.autenticacion.requests.UsersPw;
 
 public interface UsuarioPwRepository extends MongoRepository<UsersPw, String> {
 
-	@RestResource(path = "buscar")
-	public UsersPw findByUsername(@Param("username") String username);
+	@RestResource(path = "buscar-userId")
+	public UsersPw findByUserId(@Param("userId") String userId);
 	
-	@RestResource(path = "exist-user")
-	public Boolean existsByUsername(@Param("username") String username);
+	@RestResource(path = "exist-userId")
+	public Boolean existsByUserId(@Param("userId") String userId);
 
 }
