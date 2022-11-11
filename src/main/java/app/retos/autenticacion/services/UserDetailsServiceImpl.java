@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService, IUsuarioService {
 
 	private Logger log = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
@@ -48,5 +48,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	}
 
+	@Override
+	public UsersPw findByUsername(String username) {
+		return autenticacion.obtenerUsuario(username);
+	}
 }
 
